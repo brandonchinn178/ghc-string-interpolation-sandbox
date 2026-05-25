@@ -1,0 +1,17 @@
+cabal-version: 3.0
+name: demo
+version: 0.0.0
+build-type: Simple
+
+benchmark demo
+  type: exitcode-stdio-1.0
+  main-is: demo.hs
+  other-modules: Data.Text.Interpolate
+  default-language: GHC2024
+  build-depends:
+    , base
+    , deepseq
+    , ghc-experimental
+    , text
+    , tasty
+    , tasty-bench

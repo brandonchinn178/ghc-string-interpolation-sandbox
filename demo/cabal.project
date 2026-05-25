@@ -1,0 +1,9 @@
+packages: .
+
+-- Make sure to set path to locally built GHC with string interpolation
+with-compiler: ghc-10.1
+
+benchmarks: True
+
+package tagged
+    flags: -template-haskell
