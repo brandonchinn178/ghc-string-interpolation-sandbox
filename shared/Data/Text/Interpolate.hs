@@ -1,6 +1,5 @@
 module Data.Text.Interpolate where
 
-import Control.DeepSeq (NFData (..))
 import Data.String (fromString)
 import Data.String.Interpolate.Experimental (Interpolate (..))
 import Data.Text (Text)
@@ -48,5 +47,3 @@ instance Interpolate LazyText where
 instance Interpolate Text.Builder where
   interpolate = fromString . Text.unpack . Text.Lazy.toStrict . Text.Builder.toLazyText
   {-# INLINE [1] interpolate #-}
-instance NFData Text.Builder where
-  rnf = rnf . Text.Builder.toLazyText

@@ -3,6 +3,7 @@
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE StringInterpolation #-}
 
+import Control.DeepSeq (NFData (..))
 import Data.List (isInfixOf)
 import Data.String (IsString)
 import Data.String.Interpolate.Basic.Experimental qualified as B
@@ -24,17 +25,17 @@ main = defaultMain
   , bgroup' "text" $
       [ bench "naive (BASE)" (nf textNaive input)
       , bench "interpolated" (nf textInterpolated input)
-      , bench "interpolated explicit" (nf textInterpolatedExplicit input)
+      , bench "interpolated basic" (nf textInterpolatedBasic input)
       ]
   , bgroup' "text qualified" $
       [ bench "naive (BASE)" (nf textQualNaive input)
       , bench "interpolated" (nf textQualInterpolated input)
-      , bench "interpolated explicit" (nf textQualInterpolatedExplicit input)
+      , bench "interpolated basic" (nf textQualInterpolatedBasic input)
       ]
   , bgroup' "text builder" $
       [ bench "naive (BASE)" (nf builderNaive input)
       , bench "interpolated" (nf builderInterpolated input)
-      , bench "explicit" (nf builderInterpolatedExplicit input)
+      , bench "basic" (nf builderInterpolatedBasic input)
       ]
   ]
   where
@@ -85,8 +86,8 @@ textNaive Input{..} =
 textInterpolated :: Input Text -> Text
 textInterpolated Input{..} = s"Name = ${name}, age = ${age}, description = ${description}, bigint = ${bigint}"
 
-textInterpolatedExplicit :: Input Text -> Text
-textInterpolatedExplicit Input{..} = B.s"Name = ${name}, age = ${Text.show age}, description = ${description}, bigint = ${Text.show bigint}"
+textInterpolatedBasic :: Input Text -> Text
+textInterpolatedBasic Input{..} = B.s"Name = ${name}, age = ${Text.show age}, description = ${description}, bigint = ${Text.show bigint}"
 
 textQualNaive :: Input Text -> Text
 textQualNaive Input{..} =
@@ -99,8 +100,8 @@ textQualNaive Input{..} =
 textQualInterpolated :: Input Text -> Text
 textQualInterpolated Input{..} = Text.s"Name = ${name}, age = ${age}, description = ${description}, bigint = ${bigint}"
 
-textQualInterpolatedExplicit :: Input Text -> Text
-textQualInterpolatedExplicit Input{..} =
+textQualInterpolatedBasic :: Input Text -> Text
+textQualInterpolatedBasic Input{..} =
   Text.Lazy.toStrict . B.toLazyText $
   B.s"Name = ${B.fromText name}, age = ${B.decimal age}, description = ${B.fromText description}, bigint = ${B.decimal bigint}"
 
@@ -114,6 +115,9 @@ builderNaive Input{..} =
 builderInterpolated :: Input B.Builder -> B.Builder
 builderInterpolated Input{..} = s"Name = ${name}, age = ${age}, description = ${description}, bigint = ${bigint}"
 
-builderInterpolatedExplicit :: Input B.Builder -> B.Builder
-builderInterpolatedExplicit Input{..} =
+builderInterpolatedBasic :: Input B.Builder -> B.Builder
+builderInterpolatedBasic Input{..} =
   B.s"Name = ${name}, age = ${B.decimal age}, description = ${description}, bigint = ${B.decimal bigint}"
+
+instance NFData B.Builder where
+  rnf = rnf . B.toLazyText

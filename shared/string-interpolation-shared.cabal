@@ -1,0 +1,13 @@
+cabal-version: 3.0
+name: string-interpolation-shared
+version: 0.0.0
+build-type: Simple
+
+library
+  exposed-modules:
+    Data.Text.Interpolate
+  default-language: GHC2024
+  build-depends:
+    , base
+    , ghc-experimental
+    , text

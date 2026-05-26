@@ -1,17 +1,17 @@
 cabal-version: 3.0
-name: demo
+name: string-interpolation-bench
 version: 0.0.0
 build-type: Simple
 
-benchmark demo
+benchmark string-interpolation-bench
   type: exitcode-stdio-1.0
-  main-is: demo.hs
-  other-modules: Data.Text.Interpolate
+  main-is: bench.hs
   default-language: GHC2024
   build-depends:
     , base
     , deepseq
     , ghc-experimental
+    , string-interpolation-shared
     , text
     , tasty
     , tasty-bench

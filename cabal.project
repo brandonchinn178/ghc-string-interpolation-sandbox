@@ -1,0 +1,10 @@
+packages: shared bench
+
+-- Make sure to set path in cabal.project.local to
+-- locally built GHC with string interpolation
+with-compiler: ghc-10.1
+
+benchmarks: True
+
+package tagged
+    flags: -template-haskell
