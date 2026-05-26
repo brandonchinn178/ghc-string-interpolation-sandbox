@@ -1,14 +1,13 @@
 cabal-version: 3.0
-name: string-interpolation-shared
+name: demo
 version: 0.0.0
 build-type: Simple
 
-library
-  exposed-modules:
-    Data.SQL
-    Data.Text.Interpolate
+executable demo
+  main-is: demo.hs
   default-language: GHC2024
   build-depends:
     , base
     , ghc-experimental
+    , string-interpolation-shared
     , text
