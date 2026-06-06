@@ -2,9 +2,11 @@
 {-# LANGUAGE QualifiedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE StringInterpolation #-}
+{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE NoFieldSelectors #-}
 
 import Data.Complex (Complex (..))
+import Data.Debug qualified as Debug
 import Data.SQL qualified as SQL
 import Data.String (fromString)
 import Data.String.Interpolate.Experimental (Interpolate (..))
@@ -16,6 +18,9 @@ main = do
   let x = 1 :: Int
       y = 2 :: Int
   putStrLn s"${x} + ${y} = ${x + y}"
+
+  putStrLn "================================================================================"
+  print $(Debug.s"I got: ${[| x + y |]}")
 
   putStrLn "================================================================================"
   let n1 = 2 :+ 3 :: Complex Int

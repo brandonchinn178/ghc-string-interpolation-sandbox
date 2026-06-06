@@ -5,10 +5,12 @@ build-type: Simple
 
 library
   exposed-modules:
+    Data.Debug
     Data.SQL
     Data.Text.Interpolate
   default-language: GHC2024
   build-depends:
     , base
     , ghc-experimental
+    , template-haskell
     , text
