@@ -6,6 +6,7 @@ build-type: Simple
 library
   exposed-modules:
     Data.Debug
+    Data.OverloadedStringsAlt
     Data.SQL
     Data.Text.Interpolate
   default-language: GHC2024

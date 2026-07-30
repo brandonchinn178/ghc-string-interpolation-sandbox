@@ -5,6 +5,7 @@
 
 import Control.DeepSeq (NFData (..))
 import Data.List (isInfixOf)
+import Data.OverloadedStringsAlt qualified as OSAlt
 import Data.String (IsString)
 import Data.String.Interpolate.Basic.Experimental qualified as B
 import Data.Text (Text)
@@ -21,11 +22,13 @@ main = defaultMain
   [ bgroup' "string" $
       [ bench "naive (BASE)" (nf stringNaive input)
       , bench "interpolated" (nf stringInterpolated input)
+      , bench "interpolated - OSAlt" (nf stringInterpolatedOSAlt input)
       ]
   , bgroup' "text" $
       [ bench "naive (BASE)" (nf textNaive input)
       , bench "interpolated" (nf textInterpolated input)
       , bench "interpolated basic" (nf textInterpolatedBasic input)
+      , bench "interpolated - OSAlt" (nf textInterpolatedOSAlt input)
       ]
   , bgroup' "text qualified" $
       [ bench "naive (BASE)" (nf textQualNaive input)
@@ -76,6 +79,9 @@ stringNaive Input{..} =
 stringInterpolated :: Input String -> String
 stringInterpolated Input{..} = s"Name = ${name}, age = ${age}, description = ${description}, bigint = ${bigint}"
 
+stringInterpolatedOSAlt :: Input String -> String
+stringInterpolatedOSAlt Input{..} = OSAlt.s"Name = ${name}, age = ${age}, description = ${description}, bigint = ${bigint}"
+
 textNaive :: Input Text -> Text
 textNaive Input{..} =
   "Name = " <> name <>
@@ -85,6 +91,9 @@ textNaive Input{..} =
 
 textInterpolated :: Input Text -> Text
 textInterpolated Input{..} = s"Name = ${name}, age = ${age}, description = ${description}, bigint = ${bigint}"
+
+textInterpolatedOSAlt :: Input Text -> Text
+textInterpolatedOSAlt Input{..} = OSAlt.s"Name = ${name}, age = ${age}, description = ${description}, bigint = ${bigint}"
 
 textInterpolatedBasic :: Input Text -> Text
 textInterpolatedBasic Input{..} = B.s"Name = ${name}, age = ${Text.show age}, description = ${description}, bigint = ${Text.show bigint}"
