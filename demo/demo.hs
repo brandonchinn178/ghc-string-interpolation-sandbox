@@ -11,6 +11,7 @@ import Data.SQL qualified as SQL
 import Data.String (fromString)
 import Data.String.Interpolate.Experimental (Interpolate (..))
 import Data.String.Interpolate.Basic.Experimental qualified as B
+import Data.Ascii qualified as Ascii
 
 main :: IO ()
 main = do
@@ -35,6 +36,12 @@ main = do
   let name = "'Robert'; DROP TABLE Students;--" :: String
       age = 10 :: Int
   print SQL.s"SELECT * FROM tab WHERE name ILIKE ${name} AND age > ${age}"
+
+  putStrLn "================================================================================"
+
+  putStrLn Ascii.s"good example ${x}!"
+  -- Uncommenting below is a type error
+  -- putStrLn Ascii.s"🙂"
 
   putStrLn "================================================================================"
 

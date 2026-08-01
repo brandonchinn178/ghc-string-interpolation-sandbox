@@ -5,6 +5,7 @@ build-type: Simple
 
 library
   exposed-modules:
+    Data.Ascii
     Data.Debug
     Data.OverloadedStringsAlt
     Data.SQL
