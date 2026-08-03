@@ -10,8 +10,11 @@ import Data.Type.Bool (type (&&))
 import GHC.TypeLits
 import GHC.TypeNats (type (<=?))
 
+fromString :: forall (s :: Symbol) -> (KnownSymbol s, AsciiOnly s) => String
+fromString s = symbolVal (Proxy @s)
+
 interpolateRaw :: forall (s :: Symbol) -> (KnownSymbol s, AsciiOnly s) => String
-interpolateRaw s = symbolVal (Proxy @s)
+interpolateRaw = fromString
 
 interpolateValue :: InterpolateAscii a => a -> String
 interpolateValue = interpolateAscii

@@ -42,6 +42,8 @@ main = do
   putStrLn Ascii.s"good example ${x}!"
   -- Uncommenting below is a type error
   -- putStrLn Ascii.s"🙂"
+  -- Also works for QualifiedStrings:
+  -- putStrLn Ascii."🙂"
 
   putStrLn "================================================================================"
 
