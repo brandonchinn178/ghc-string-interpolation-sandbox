@@ -8,7 +8,7 @@ module Data.Debug (
   interpolateFinalize,
 ) where
 
-import Data.String.Interpolate.Experimental qualified as S
+import Data.String.Experimental qualified as S
 import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
 

@@ -78,6 +78,8 @@ import qualified Data.Text.Lazy as L
 import GHC.Stack (HasCallStack)
 #endif
 
+import Data.String.Experimental (Interpolate (..))
+
 ------------------------------------------------------------------------
 
 -- | A @Builder@ is an efficient way to build lazy @Text@ values.
@@ -129,6 +131,10 @@ instance Eq Builder where
 
 instance Ord Builder where
     a <= b = toLazyText a <= toLazyText b
+
+instance Interpolate Builder where
+  interpolate = String.fromString . S.unpack . L.toStrict . toLazyText
+  {-# INLINE [1] interpolate #-}
 
 ------------------------------------------------------------------------
 
@@ -216,7 +222,7 @@ fromString str = Builder $ \k (Buffer p0 o0 u0) -> do
     loop p0 o0 u0 (len - o0 - 3) str
   where
     chunkSize = smallChunkSize
-{-# INLINEABLE fromString #-}
+{-# INLINEABLE [1] fromString #-}
 
 -- | /O(1)./ A @Builder@ taking a lazy @Text@, satisfying
 --

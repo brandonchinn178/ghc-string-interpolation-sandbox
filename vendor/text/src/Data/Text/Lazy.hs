@@ -264,6 +264,8 @@ import qualified Language.Haskell.TH.Lib as TH
 #endif
 import Text.Printf (PrintfArg, formatArg, formatString)
 
+import Data.String.Experimental (Interpolate (..))
+
 -- $fusion
 --
 -- Starting from @text-1.3@ fusion is no longer implicit,
@@ -353,6 +355,10 @@ instance Monoid Text where
 -- "\65533"
 instance IsString Text where
     fromString = pack
+
+instance Interpolate Text where
+  interpolate = fromString . T.unpack . toStrict
+  {-# INLINE [1] interpolate #-}
 
 -- | Performs replacement on invalid scalar values:
 --

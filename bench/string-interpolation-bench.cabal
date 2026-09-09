@@ -15,3 +15,4 @@ benchmark string-interpolation-bench
     , text
     , tasty
     , tasty-bench
+  ghc-options: -O2 -ddump-simpl -ddump-rule-firings -ddump-rule-rewrites -ddump-to-file

@@ -272,6 +272,10 @@ library
 
   exposed-modules:
     Data.Text.Impl
+    Data.Text.Interpolate
+    Data.Text.Lazy.Interpolate
+    Data.Text.Lazy.Builder.Interpolate
+  build-depends: ghc-experimental
 
 source-repository head
   type:     git

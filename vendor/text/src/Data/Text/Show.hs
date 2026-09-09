@@ -26,6 +26,7 @@ module Data.Text.Show
     ) where
 
 import Control.Monad.ST (ST, runST)
+import Data.String (fromString)
 import Data.Text.Internal (Text(..), empty, safe, pack)
 import Data.Text.Internal.Encoding.Utf8 (utf8Length)
 import Data.Text.Internal.Unsafe.Char (unsafeWrite)
@@ -45,8 +46,14 @@ import qualified GHC.CString as GHC
 import GHC.Stack (HasCallStack)
 #endif
 
+import Data.String.Experimental (Interpolate (..))
+
 instance Show Text where
     showsPrec p ps r = showsPrec p (unpack ps) r
+
+instance Interpolate Text where
+  interpolate = fromString . unpack
+  {-# INLINE [1] interpolate #-}
 
 -- | /O(n)/ Convert a 'Text' into a 'String'.
 unpack ::

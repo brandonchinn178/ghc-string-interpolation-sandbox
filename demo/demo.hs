@@ -10,7 +10,6 @@ import Data.Debug qualified as Debug
 import Data.SQL qualified as SQL
 import Data.String (fromString)
 import Data.String.Interpolate.Experimental (Interpolate (..))
-import Data.String.Interpolate.Basic.Experimental qualified as B
 import Data.Ascii qualified as Ascii
 
 main :: IO ()
@@ -49,10 +48,7 @@ main = do
 
 -- | `2 :+ 3` => "2 + 3i"
 instance (Interpolate a, Num a, Ord a) => Interpolate (Complex a) where
-  interpolate (r :+ i) =
-    interpolate r <> " " <>
-    interpolate sign <> " " <>
-    interpolate (abs i) <> "i"
+  interpolate (r :+ i) = s"${r} ${sign} ${abs i}i"
    where
     sign = if i < 0 then "-" else "+" :: String
 
@@ -62,7 +58,4 @@ data SrcLoc = SrcLoc
   , col :: Int
   }
 instance Interpolate SrcLoc where
-  interpolate SrcLoc{..} =
-    interpolate file <> ":" <>
-    interpolate line <> ":" <>
-    interpolate col
+  interpolate SrcLoc{..} = s"${file}:${line}:${col}"

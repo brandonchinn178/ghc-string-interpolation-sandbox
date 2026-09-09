@@ -1,5 +1,7 @@
 {-# LANGUAGE MagicHash #-}
 {-# LANGUAGE PatternSynonyms #-}
+{-# LANGUAGE TypeApplications #-}
+{-# OPTIONS_GHC -Wno-orphans #-}
 
 -- |
 -- Module      : Data.Text
@@ -217,3 +219,33 @@ module Data.Text
 
 import Data.Text.Impl
 import Prelude ()
+
+import Data.Int (Int)
+import Data.Monoid (Monoid)
+import Data.String (IsString)
+import qualified Data.Text.Lazy as L
+import qualified Data.Text.Lazy.Builder as B
+import qualified Data.Text.Lazy.Builder.Int as B
+import qualified Data.String.Interpolate.Default.Experimental as I
+import qualified Prelude
+
+{-# RULES
+"TEXT interpolateFinalize/Builder" [2]
+    forall (x :: forall s. (IsString s, Monoid s) => s).
+    B.fromString (I.interpolateFinalize x) = x @B.Builder
+"TEXT interpolateFinalize/LazyText"
+    forall (x :: forall s. (IsString s, Monoid s) => s).
+    L.pack (I.interpolateFinalize x) = B.toLazyText (x @B.Builder)
+"TEXT interpolateFinalize/Text"
+    forall (x :: forall s. (IsString s, Monoid s) => s).
+    pack (I.interpolateFinalize x) = L.toStrict (B.toLazyText (x @B.Builder))
+
+"TEXT interpolateValue Text -> Builder"
+    I.interpolateValue = B.fromText
+"TEXT interpolateValue LazyText -> Builder"
+    I.interpolateValue = B.fromLazyText
+"TEXT interpolateValue Builder -> Builder"
+    I.interpolateValue = Prelude.id @B.Builder
+"TEXT interpolateValue Int -> Builder"
+    I.interpolateValue = B.decimal @Int
+#-}
