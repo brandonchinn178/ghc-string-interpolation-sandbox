@@ -1,4 +1,4 @@
-packages: shared demo bench
+packages: shared demo bench vendor/text
 
 -- Make sure to set path in cabal.project.local to
 -- locally built GHC with string interpolation
