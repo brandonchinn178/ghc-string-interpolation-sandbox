@@ -236,7 +236,7 @@ import qualified Data.List.NonEmpty as NE
 import Data.Monoid (Monoid(..))
 import Data.Semigroup (Semigroup(..))
 import Data.String (IsString(..))
-import qualified Data.Text as T
+import qualified Data.Text.Impl as T
 import qualified Data.Text.Array as A
 import qualified Data.Text.Internal as T
 import qualified Data.Text.Internal.Fusion.Common as S

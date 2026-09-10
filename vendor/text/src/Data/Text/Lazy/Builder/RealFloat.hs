@@ -24,7 +24,7 @@ import Data.Text.Internal.Builder.Functions ((<>), i2d)
 import Data.Text.Lazy.Builder.Int (decimal)
 import Data.Text.Internal.Builder.RealFloat.Functions (roundTo)
 import Data.Text.Lazy.Builder
-import qualified Data.Text as T
+import qualified Data.Text.Impl as T
 #if MIN_VERSION_base(4,11,0)
 import Prelude hiding ((<>))
 #endif

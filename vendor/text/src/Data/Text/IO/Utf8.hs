@@ -31,7 +31,7 @@ import Control.Monad ((<=<), (=<<))
 import Data.ByteString (ByteString)
 import qualified Data.ByteString.Char8 as B
 import Data.Function ((.))
-import Data.Text (Text)
+import Data.Text.Impl (Text)
 import Data.Text.Encoding (decodeUtf8, encodeUtf8)
 import GHC.IO.Handle (Handle)
 import System.IO (IO, FilePath)

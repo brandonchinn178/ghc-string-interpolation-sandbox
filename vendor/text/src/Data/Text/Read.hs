@@ -24,7 +24,7 @@ import Control.Monad (liftM)
 import Data.Char (ord)
 import Data.Int (Int8, Int16, Int32, Int64)
 import Data.Ratio ((%))
-import Data.Text as T
+import Data.Text.Impl as T
 import Data.Text.Internal as T (Text(..))
 import Data.Text.Array as A
 import Data.Text.Internal.Private (spanAscii_)

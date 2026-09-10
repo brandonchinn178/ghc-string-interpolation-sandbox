@@ -28,7 +28,7 @@ import qualified Control.Exception as E
 import qualified Data.ByteString as B
 import Data.ByteString.Builder (hPutBuilder, charUtf8)
 import Data.IORef (readIORef, writeIORef)
-import Data.Text (Text)
+import Data.Text.Impl (Text)
 import Data.Text.Encoding (encodeUtf8, encodeUtf8Builder)
 import Data.Text.Internal.Fusion (stream, streamLn, unstream)
 import Data.Text.Internal.Fusion.Types (Step(..), Stream(..))
@@ -46,7 +46,7 @@ import GHC.IO.Handle.Text (commitBuffer')
 import GHC.IO.Handle.Types (BufferList(..), BufferMode(..), Handle__(..), Newline(..))
 import System.IO (Handle, hPutChar, utf8)
 import System.IO.Error (isEOFError)
-import qualified Data.Text as T
+import qualified Data.Text.Impl as T
 
 -- | Read a single line of input from a handle, constructing a list of
 -- decoded chunks as we go.  When we're done, transform them into the

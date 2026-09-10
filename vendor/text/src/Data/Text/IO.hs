@@ -42,7 +42,7 @@ module Data.Text.IO
     , putStrLn
     ) where
 
-import Data.Text (Text)
+import Data.Text.Impl (Text)
 import Prelude hiding (appendFile, getContents, getLine, interact,
                        putStr, putStrLn, readFile, writeFile)
 import System.IO (Handle, IOMode(..), openFile, stdin, stdout,
@@ -50,7 +50,7 @@ import System.IO (Handle, IOMode(..), openFile, stdin, stdout,
 import qualified Control.Exception as E
 import Control.Monad (liftM2, when)
 import Data.IORef (readIORef)
-import qualified Data.Text as T
+import qualified Data.Text.Impl as T
 import Data.Text.Internal.IO (hGetLineWith, readChunk, hPutStr, hPutStrLn)
 import GHC.IO.Buffer (CharBuffer, isEmptyBuffer)
 import GHC.IO.Exception (IOException(ioe_type), IOErrorType(InappropriateType))

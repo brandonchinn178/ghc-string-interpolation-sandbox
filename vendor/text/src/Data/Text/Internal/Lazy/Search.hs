@@ -29,7 +29,7 @@ import qualified Data.Text.Array as A
 import Data.Int (Int64)
 import Data.Word (Word8, Word64)
 import qualified Data.Text.Internal as T
-import qualified Data.Text as T (concat, isPrefixOf)
+import qualified Data.Text.Impl as T (concat, isPrefixOf)
 import Data.Text.Internal.ArrayUtils (memchr)
 import Data.Text.Internal.Fusion.Types (PairS(..))
 import Data.Text.Internal.Lazy (Text(..), foldrChunks)

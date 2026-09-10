@@ -42,11 +42,11 @@ module Data.Text.Internal.Lazy
     ) where
 
 import Data.Bits (shiftL)
-import Data.Text ()
+import Data.Text.Impl ()
 import Foreign.Storable (sizeOf)
 import qualified Data.Text.Array as A
 import qualified Data.Text.Internal as T
-import qualified Data.Text as T
+import qualified Data.Text.Impl as T
 
 data Text = Empty
           -- ^ Empty text.

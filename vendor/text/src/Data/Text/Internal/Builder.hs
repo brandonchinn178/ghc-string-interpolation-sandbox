@@ -70,7 +70,7 @@ import Data.Text.Internal.Unsafe.Char (unsafeWrite)
 import Prelude hiding (map, putChar)
 
 import qualified Data.String as String
-import qualified Data.Text as S
+import qualified Data.Text.Impl as S
 import qualified Data.Text.Array as A
 import qualified Data.Text.Lazy as L
 

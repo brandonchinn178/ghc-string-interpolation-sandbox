@@ -164,7 +164,6 @@ library
     build-depends: base < 0
 
   exposed-modules:
-    Data.Text
     Data.Text.Array
     Data.Text.Encoding
     Data.Text.Encoding.Error
@@ -269,6 +268,9 @@ library
     TypeFamilies
     UnboxedTuples
     UnliftedFFITypes
+
+  exposed-modules:
+    Data.Text.Impl
 
 source-repository head
   type:     git

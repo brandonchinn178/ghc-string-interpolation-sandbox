@@ -39,7 +39,7 @@
 -- <http://hackage.haskell.org/package/text-icu text-icu package >.
 --
 
-module Data.Text
+module Data.Text.Impl
     (
     -- * Strict vs lazy types
     -- $strict
